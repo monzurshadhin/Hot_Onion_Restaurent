@@ -321,7 +321,7 @@ const addToCart = (mealID) =>{
     const {strMealThumb,strMeal} = data.meals[0];
     // console.log(data.meals[0]);
    
-    console.log(alreadyAdded);
+    
     
     cartArray.push({strMealThumb,strMeal});
     console.log(cartArray);
