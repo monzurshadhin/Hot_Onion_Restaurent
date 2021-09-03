@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="shortcut icon" href="ICON/Group 743.png" type="image/x-icon" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hot Onion Restaurant</title>
+
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+
+    <!-- bootstrap link  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+
+    <!-- css file link  -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <!-- navabar  -->
+      <section class="nav-bg">
+        <nav class="container navbar navbar-expand-lg navbar-light">
+          <div class="container-fluid">
+            <img class="img-fluid logo" src="logo2.png" alt="" />
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto pt-2 mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Category</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contact us</a>
+                </li>
+                <li
+                  class="nav-item"
+                  id="cart"
+                  data-bs-toggle="modal"
+                  data-bs-target="#cartModal"
+                >
+                  <div class="position-relative nav-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span
+                      id="total-item"
+                      class="
+                        position-absolute
+                        top-10
+                        start-25
+                        translate-middle
+                        badge
+                        rounded-pill
+                        bg-danger
+                      "
+                    >
+                      0
+                    </span>
+                  </div>
+                  <!-- <a class="nav-link" href="#"
+                    ><i class="fas fa-shopping-cart"></i
+                  ></a> -->
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="#">login</a>
+                </li>
+
+                <li class="nav-item">
+                  <button
+                    type="button"
+                    class="btn btn-danger rounded-pill px-4 ms-lg-3"
+                  >
+                    Sign up
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </section>
+
+      <!-- banner  -->
+      <section class="banner">
+        <div class="container">
+          <h1 class="text-center">Best Food Waiting For You</h1>
+
+          <div class="input-group w-75 mx-auto mt-4">
+            <input
+              id="input-field"
+              type="search "
+              class="form-control mt-4"
+              placeholder="Search your food"
+              aria-label="Recipient's username"
+              aria-describedby="button-addon2"
+            />
+            <button
+              class="btn btn-dark bg-danger mt-4 px-4 fw-bold"
+              type="button"
+              id="button-addon2"
+            >
+              search
+            </button>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <!-- main part  -->
+    <main>
+      <section id="food-section">
+        <div class="item-list my-5 container">
+          <ul class="d-flex justify-content-center">
+            <li id="break-fast" class="mx-2 item-link active">Breakfast</li>
+            <li id="lunch" class="mx-2 item-link">Lunch</li>
+            <li id="dinner" class="mx-2 item-link">Dinner</li>
+          </ul>
+        </div>
+
+        <div class="container">
+          <!-- cart modal  -->
+          <div
+            class="modal fade"
+            id="cartModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div
+              class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+            >
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3 class="modal-title" id="exampleModalLabel">
+                    <b>Food Added</b>
+                  </h3>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div id="cart-modal" class="modal-body"></div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="button" class="btn btn-danger">
+                    Order now
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--details Modal -->
+          <div
+            class="modal fade"
+            id="detailsModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div
+              class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+            >
+              <div class="modal-content" id="modal-body"></div>
+            </div>
+          </div>
+          <!-- food item  -->
+          <div
+            id="food-item"
+            class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5"
+          >
+            <div class="col">
+              <div class="food-card h-100 rounded">
+                <img
+                  src="Breakfast/breakfast1.png"
+                  class="card-img-top img-fluid p-5"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <h5 class="card-title text-center">Begel and Cream cheese</h5>
+                  <p class="card-text text-center">Eat Healthy.Stay Healthy</p>
+                  <h3 class="text-center">$<span>6.99</span></h3>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <button
+                    id="details-button"
+                    type="button"
+                    class="btn btn-danger my-3"
+                  >
+                    Order Now
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="food-card h-100 rounded">
+                <img
+                  src="Breakfast/breakfast2.png"
+                  class="card-img-top img-fluid p-5"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <h5 class="card-title text-center">Breakfast samdwich</h5>
+                  <p class="card-text text-center">Eat Healthy.Stay Healthy</p>
+                  <h3 class="text-center">$<span>9.99</span></h3>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <button
+                    id="details-button"
+                    onclick="getDetails('${element.idDrink}')"
+                    type="button"
+                    class="btn btn-danger my-3"
+                  >
+                    Order Now
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="food-card h-100 rounded">
+                <img
+                  src="Breakfast/breakfast3.png"
+                  class="card-img-top img-fluid p-5"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <h5 class="card-title text-center">Baked Chicken</h5>
+                  <p class="card-text text-center">Eat Healthy.Stay Healthy</p>
+                  <h3 class="text-center">$<span>10.99</span></h3>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <button
+                    id="details-button"
+                    onclick="getDetails('${element.idDrink}')"
+                    type="button"
+                    class="btn btn-danger my-3"
+                  >
+                    Order Now
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="food-card h-100 rounded">
+                <img
+                  src="Breakfast/breakfast4.png"
+                  class="card-img-top img-fluid p-5"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <h5 class="card-title text-center">Egg Bendict</h5>
+                  <p class="card-text text-center">Eat Healthy.Stay Healthy</p>
+                  <h3 class="text-center">$<span>8.99</span></h3>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <button
+                    id="details-button"
+                    onclick="getDetails('${element.idDrink}')"
+                    type="button"
+                    class="btn btn-danger my-3"
+                  >
+                    Order Now
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="food-card h-100 rounded">
+                <img
+                  src="Breakfast/breakfast5.png"
+                  class="card-img-top img-fluid p-5"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <h5 class="card-title text-center">Toast Crossant</h5>
+                  <p class="card-text text-center">Eat Healthy.Stay Healthy</p>
+                  <h3 class="text-center">$<span>17.99</span></h3>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <button
+                    id="details-button"
+                    onclick="getDetails('${element.idDrink}')"
+                    type="button"
+                    class="btn btn-danger my-3"
+                  >
+                    Order Now
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="food-card h-100 rounded">
+                <img
+                  src="Breakfast/breakfast6.png"
+                  class="card-img-top img-fluid p-5"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <h5 class="card-title text-center">
+                    Full Breakfast Egg Toast Brunch
+                  </h5>
+                  <p class="card-text text-center">Eat Healthy.Stay Healthy</p>
+                  <h3 class="text-center">$<span>3.99</span></h3>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <button
+                    id="details-button"
+                    onclick="getDetails('${element.idDrink}')"
+                    type="button"
+                    class="btn btn-danger my-3"
+                  >
+                    Order Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="button" class="btn btn-secondary px-5 my-5">
+            Checkout Your Food
+          </button>
+        </div>
+      </section>
+
+      <!-- about us section  -->
+      <section id="about-us">
+        <div class="container">
+          <h2>Why you choose us</h2>
+          <p class="w-75 mt-3 mb-5">
+            Barton waited twenty always repair in within we do. An delighted
+            offending curiosty my is dashwood at. Boy prosperous increasing
+            surrounded
+          </p>
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div class="col">
+              <div class="">
+                <img
+                  src="Image/adult-blur-blurred-background-687824.png"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body d-flex">
+                  <div class="card-icon">
+                    <img class="text-danger" src="ICON/Group 204.png" alt="" />
+                  </div>
+                  <div class="card-details ps-2 pt-1">
+                    <h5 class="card-title">Fast Delevery</h5>
+                    <p class="card-text">
+                      This is a longer card with supporting text below as a
+                      natural lead-in to additional content. This content is a
+                      little bit longer.
+                    </p>
+                    <a href="" class="text-decoration-none d-flex"
+                      >see more
+                      <span
+                        ><i
+                          class="fas fa-arrow-circle-right ms-2 fs-5 mt-1"
+                        ></i></span
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="">
+                <img
+                  src="Image/chef-cook-food-33614.png"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body d-flex">
+                  <div class="card-icon">
+                    <img class="text-danger" src="ICON/Group 1133.png" alt="" />
+                  </div>
+                  <div class="card-details ps-2 pt-1">
+                    <h5 class="card-title">A Good Auto Responder</h5>
+                    <p class="card-text">
+                      This is a longer card with supporting text below as a
+                      natural lead-in to additional content. This content is a
+                      little bit longer.
+                    </p>
+                    <a href="" class="text-decoration-none d-flex"
+                      >see more
+                      <span
+                        ><i
+                          class="fas fa-arrow-circle-right ms-2 fs-5 mt-1"
+                        ></i></span
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="">
+                <img
+                  src="Image/architecture-building-city-2047397.png"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body d-flex">
+                  <div class="card-icon">
+                    <img class="text-danger" src="ICON/Group 245.png" alt="" />
+                  </div>
+                  <div class="card-details ps-2 pt-1">
+                    <h5 class="card-title">Home Delevery</h5>
+                    <p class="card-text">
+                      This is a longer card with supporting text below as a
+                      natural lead-in to additional content. This content is a
+                      little bit longer.
+                    </p>
+                    <a href="" class="text-decoration-none d-flex"
+                      >see more
+                      <span
+                        ><i
+                          class="fas fa-arrow-circle-right ms-2 fs-5 mt-1"
+                        ></i></span
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-dark py-5">
+      <section class="container">
+        <div class="top-footer">
+          <div class="row">
+            <div class="col-lg-7 col-md-6 col-12 mb-4">
+              <img class="img-fluid w-25" src="logo2.png" alt="" />
+            </div>
+            <div class="col-lg-5 col-md-6 col-12">
+              <div class="row">
+                <div class="col-md-6 col-12 mb-4">
+                  <a href="" class="text-decoration-none text-light"
+                    >About Online Food
+                  </a>
+                  <br />
+                  <a href="" class="text-decoration-none text-light"
+                    >Read our blog
+                  </a>
+                  <br />
+                  <a href="" class="text-decoration-none text-light"
+                    >Sign up to deliver
+                  </a>
+                  <br />
+                  <a href="" class="text-decoration-none text-light"
+                    >Add your restaurant
+                  </a>
+                </div>
+                <div class="col-md-6 col-12">
+                  <a href="" class="text-decoration-none text-light"
+                    >Get help
+                  </a>
+                  <br />
+                  <a href="" class="text-decoration-none text-light"
+                    >Read FAQs
+                  </a>
+                  <br />
+                  <a href="" class="text-decoration-none text-light"
+                    >View all cities
+                  </a>
+                  <br />
+                  <a href="" class="text-decoration-none text-light"
+                    >Restaurant near me
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-footer row mt-5">
+          <div class="col-md-7 col-12">
+            <p>
+              <small class="text-muted">Copyright @ 2021 Online Food</small>
+            </p>
+          </div>
+          <div class="col-md-5 col-12">
+            <a href="" class="text-decoration-none text-light"
+              >Privacy Policy
+            </a>
+
+            <a
+              href=""
+              class="text-decoration-none text-light ms-lg-5 ms-md-3 ms-2"
+              >Terms of Use
+            </a>
+
+            <a
+              href=""
+              class="text-decoration-none text-light ms-lg-5 ms-md-3 ms-2"
+              >Pricing
+            </a>
+          </div>
+        </div>
+      </section>
+    </footer>
+
+    <!-- bootstrap js file link  -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+    <!-- js file -->
+    <script src="js/app.js"></script>
+  </body>
+</html>

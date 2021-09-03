@@ -1,0 +1,63 @@
+/* header part  */
+.banner {
+  background-image: url("../Image/bannerbackground.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 200px 0px;
+}
+
+/* nav bar part  */
+.nav-bg {
+  background-color: rgb(252 244 224);
+}
+.logo {
+  width: 150px;
+}
+.nav-link {
+  font-weight: bold;
+}
+
+/* main part  */
+/* menu list  */
+.item-list ul {
+  list-style-type: none;
+}
+
+.active {
+  color: #ff3c78;
+}
+
+.item-list ul li {
+  position: relative;
+  text-decoration: none;
+  /* color: black; */
+  font-weight: bold;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.item-list ul li:after {
+  content: "";
+  position: absolute;
+  background-color: #ff3c78;
+  height: 3px;
+  width: 0%;
+  left: 0;
+  bottom: -10px;
+  transition: 0.3s;
+}
+
+.item-list ul li:hover:after {
+  width: 100%;
+}
+.item-list ul li a:hover {
+  color: #ff3c78;
+}
+
+/* card part  */
+.food-card:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+/* error-message */
