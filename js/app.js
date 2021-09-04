@@ -341,13 +341,14 @@ const addToCart = (mealID) =>{
     const totalItem = cartArray.length;
     totalOrderField.innerText=totalItem;
   });
-
  
 }
 
 // cart modal 
 document.getElementById('cart').addEventListener('click',()=>{
-  // console.log('cart click');
+  const cartModal = document.getElementById('cart-modal');
+  cartModal.innerHTML= ``;
+  console.log('cart click');
   cartArray.forEach(data => {
     console.log(data);
     const cartModal = document.getElementById('cart-modal');
