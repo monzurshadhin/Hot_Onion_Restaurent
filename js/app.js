@@ -318,12 +318,23 @@ const addToCart = (mealID) =>{
   console.log(url);
 
   getFetchData(url).then((data) => {
-    const {strMealThumb,strMeal} = data.meals[0];
+    const {strMealThumb,strMeal,idMeal} = data.meals[0];
     // console.log(data.meals[0]);
+    const obj = {strMealThumb,strMeal,idMeal};
+    // console.log(obj);
+    obj.quantity = 1;
+    // console.log(obj);
+    const isAlreadyAdded = cartArray.find(e=> e.idMeal===obj.idMeal);
+    if(isAlreadyAdded!== undefined){
+      isAlreadyAdded.quantity = isAlreadyAdded.quantity+1;
+
+    }
+    else{
+      cartArray.push(obj);
+
+    }
    
     
-    
-    cartArray.push({strMealThumb,strMeal});
     console.log(cartArray);
 
     const totalOrderField = document.getElementById("total-item");
@@ -351,12 +362,13 @@ document.getElementById('cart').addEventListener('click',()=>{
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">${data.strMeal}</h5>
-        <p>Quantity:<span id="quantity">1</span></p>
+        <p>Quantity:<span id="quantity">${data.quantity}</span></p>
       </div>
     </div>
   </div>
     `;
     cartModal.appendChild(div);
+
 
 
 
