@@ -1,5 +1,17 @@
 // global variable 
 const cartArray = [];
+const cart = localStorage.getItem('cart');
+let cartObj ;
+
+if(cart){
+cartObj = JSON.parse(cart);
+const localCartData = cartObj.cartArray;
+for(const data of localCartData){
+  cartArray.push(data);
+}
+console.log(cartArray);
+}
+
 
 // link active
 const links = document.getElementsByClassName("item-link");
@@ -311,6 +323,21 @@ const displayDetails = (data) => {
 
 };
 
+// get locat storage data 
+const getCart = () =>{
+  const cart = localStorage.getItem('cart');
+  let cartObj ;
+  if(cart){
+      cartObj = JSON.parse(cart);
+     
+  }
+  else{
+      cartObj = {};
+
+  }
+  return cartObj;
+}
+
 // add to cart button 
 const addToCart = (mealID) =>{
   const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}`;
@@ -321,7 +348,7 @@ const addToCart = (mealID) =>{
     const {strMealThumb,strMeal,idMeal} = data.meals[0];
     // console.log(data.meals[0]);
     const obj = {strMealThumb,strMeal,idMeal};
-    // console.log(obj);
+    console.log(obj);
     obj.quantity = 1;
     // console.log(obj);
     const isAlreadyAdded = cartArray.find(e=> e.idMeal===obj.idMeal);
@@ -333,23 +360,59 @@ const addToCart = (mealID) =>{
       cartArray.push(obj);
 
     }
-   
-    
-    console.log(cartArray);
 
-    const totalOrderField = document.getElementById("total-item");
-    const totalItem = cartArray.length;
-    totalOrderField.innerText=totalItem;
+ 
+
+    
+  // add to cart local storage 
+
+    let cart = getCart();
+    console.log(cartArray);
+   
+    cart = {cartArray}
+    
+     console.log(cart);
+    const cartStringify = JSON.stringify(cart);
+    localStorage.setItem('cart',cartStringify);
+
+setTotalItem();
+   
   });
+
+
+
  
 }
+const setTotalItem = () =>
+{
+   // set total number of item add to cart 
+
+   let cart = getCart();
+   const localData= cart.cartArray
+   let item=0;
+   for(const data in localData){
+     item++;
+     console.log(item);
+   }
+   const totalOrderField = document.getElementById("total-item");
+   
+   totalOrderField.innerText=item;
+}
+setTotalItem();
+  
+
 
 // cart modal 
 document.getElementById('cart').addEventListener('click',()=>{
   const cartModal = document.getElementById('cart-modal');
   cartModal.innerHTML= ``;
   console.log('cart click');
-  cartArray.forEach(data => {
+
+  const cart = getCart();
+  const localData= cart.cartArray
+  for(const data in localData){
+    console.log(localData[data]);
+
     console.log(data);
     const cartModal = document.getElementById('cart-modal');
     const div = document.createElement('div');
@@ -358,12 +421,12 @@ document.getElementById('cart').addEventListener('click',()=>{
     div.innerHTML=`
     <div class="row g-0">
     <div class="col-md-4">
-      <img src="${data.strMealThumb}" class="img-fluid rounded-start" alt="...">
+      <img src="${localData[data].strMealThumb}" class="img-fluid rounded-start" alt="...">
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">${data.strMeal}</h5>
-        <p>Quantity:<span id="quantity">${data.quantity}</span></p>
+        <h5 class="card-title">${localData[data].strMeal}</h5>
+        <p>Quantity:<span id="quantity">${localData[data].quantity}</span></p>
       </div>
     </div>
   </div>
@@ -371,8 +434,13 @@ document.getElementById('cart').addEventListener('click',()=>{
     cartModal.appendChild(div);
 
 
-
-
-  });
-
+  }
+  
 });
+
+// place order 
+document.getElementById('order').addEventListener('click',()=>{
+  document.getElementById('cart-modal').textContent='';
+  localStorage.removeItem('cart');
+  setTotalItem();
+})
